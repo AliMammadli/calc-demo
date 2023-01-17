@@ -8,10 +8,24 @@ export const Calc = () => {
     const [lambda, set_lambda] = useState(3)
     const [s, set_s] = useState(8)
     const [S, set_S] = useState(10)
+    const [res, set_res] = useState([0, 0, 0, 0])
 
 
     const onChange = (e, setState) => {
-        setState(+e.target.value)
+        setState(e.target.value)
+    }
+
+
+    const calc = () => {
+        set_nu(+nu)
+        set_kappa(+kappa)
+        set_lambda(+lambda)
+        set_s(+s)
+        set_S(+S)
+
+        set_res([RR, P_c, S_av(), V_av()])
+
+        console.log({ nu, kappa, lambda, s, S })
     }
 
 
@@ -40,7 +54,7 @@ export const Calc = () => {
         else if (S - s + 1 <= m && m <= S) { return (1 + kappa / lambda) * p(m - 1) - (d - b) * p(m - (S - s + 1)) }
     }
 
-    const RR = lambda * p(s + 1)
+    const RR = lambda * p(+s + 1)
     const P_c = p(0)
 
     const S_av = () => {
@@ -83,14 +97,17 @@ export const Calc = () => {
                     <label><MathJax.Node formula={`\\ S \\`} /></label>
                     <input type='text' name='S' value={S} onChange={(e) => onChange(e, set_S)} />
                 </div>
+                <div className='form-input'>
+                    <button onClick={() => calc()}>Calculate</button>
+                </div>
             </div>
 
             <div className='results'>
                 <MathJax.Node formula={`\\ 
-                    RR = ${RR} \\\\
-                    P_{c} = ${P_c} \\\\
-                    S_{av} = ${S_av()} \\\\
-                    V_{av} = ${V_av()} \\\\
+                    RR = ${res[0]} \\\\
+                    P_{c} = ${res[1]} \\\\
+                    S_{av} = ${res[2]} \\\\
+                    V_{av} = ${res[3]} \\\\
                 \\`} />
             </div>
 
