@@ -1,0 +1,26 @@
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 20px;
+}
+
+.form-input > input {
+    height: 25px;
+    width: 50px;
+    margin: 20px 10px;
+    font-size: 17px;
+    text-align: right;
+}
+
+.results {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
